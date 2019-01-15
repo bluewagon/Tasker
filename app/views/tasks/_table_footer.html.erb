@@ -1,0 +1,13 @@
+<tfoot>
+  <tr>
+    <td colspan="5">
+      <!-- <a href="#new-task-modal" data-toggle="modal">Add new task</a> -->
+      <%= link_to "Add new task", new_task_path, :id => "add-new-task" %>
+    </td>
+    <td colspan="3">
+      <% unless user_signed_in? %>
+        <a href="">Register to save your data!</a>
+      <%end%>
+    </td>
+  </tr>
+</tfoot>

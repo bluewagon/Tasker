@@ -1,0 +1,11 @@
+<% today = Date.today %>
+<thead>
+  <tr>
+    <th>Tasks</th>
+    <% (@date.beginning_of_week..@date.end_of_week).each do |date| %>
+      <th class="today-<%= date == today %>">
+        <%= date.strftime('%A') %><br><%= date.strftime('%m/%d') %>
+      </th>
+    <% end %>
+  </tr>
+</thead>

@@ -1,0 +1,18 @@
+<section class="main-header">
+  <header>
+    <h1><%= link_to "Tasker App", root_path %></h1>
+    <h4>Keep track of your daily tasks and goals</h4>
+  </header>
+  <footer>
+    <ul class="inline">
+      <% if user_signed_in? %>
+        <li>Welcome, <%= current_user.email.split('@')[0] %></li>
+        <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to "Register an Account", new_user_registration_path %></li>
+      <% end %>
+    <ul>
+  </footer>
+</section>

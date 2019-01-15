@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="span8 offset2 contain">
+    <header>
+      <h2>Set Task to Incomplete</h2>
+    </header>
+    <section>
+      <p>Are you sure you wish to remove the completion of <%= @task.name %> on <%= @daily_task.task_date %>?</p>
+      <%= task_daily_task_path(@task, @daily_task), 
+              :class => "cell_descriptor", method: :delete %>
+    </section>
+  </div>
+</div>

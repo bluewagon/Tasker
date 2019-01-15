@@ -1,0 +1,33 @@
+<%= today = Date.today %>
+<tr>
+  <td class="task-name">
+    <a href="<%= remove_task_path(task) %>" title="Delete Task" class="del-task">X</a> |
+    <%= link_to task.name, edit_task_path(task), :title => "Edit task" %>
+  </td>
+  <% (@date.beginning_of_week..@date.end_of_week).each do |date| %>
+    <% if date < task.start_date %>
+      <td></td>
+
+    <% elsif date > today %>
+      <td class="pending"></td>
+
+    <% else %>
+      <% daily_tasks = task.daily_tasks.select { |dt| dt["task_date"] == date } %>
+      <% if daily_tasks.blank? %>
+        <td class="error cell_tog">
+          <%= link_to "Set Complete", 
+              new_task_daily_task_path(task, date: date),
+              :class => "cell_descriptor" %>
+        </td>
+      <% else %>
+        <td class="success cell_tog">
+          <%= link_to "Set Incomplete", 
+              remove_task_daily_task_path(task, daily_tasks[0]), 
+              :class => "cell_descriptor" %>
+        </td>
+      <% end %>
+      
+
+    <% end %>
+  <% end %>
+</tr>

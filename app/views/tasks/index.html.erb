@@ -1,0 +1,23 @@
+<% today = Date.today %>
+<div class="row">
+  <div class="span12">
+    <% if user_signed_in? %>
+      <table class="table task-table">
+
+        <%= render 'caption' %>
+        
+        <%= render 'table_header' %>
+        
+        <%= render 'table_footer' %>
+      
+        <%= render 'table_body' %>
+        
+      </table>
+    <% else %>
+      <%= render 'anon' %>
+    <% end %>
+  </div>
+</div>
+<% if user_signed_in? %>
+  <%= render 'add_new_task' %>
+<% end %>

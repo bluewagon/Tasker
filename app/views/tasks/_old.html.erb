@@ -1,0 +1,66 @@
+<% if user_signed_in? %>
+<% today = Date.today %>
+<div class="row">
+  <div class="span12">
+    <table class="table task-table">
+      <caption>
+        <a href=""><< Last week</a> 
+        <span class="divider">|</span>
+        Week #<%= today.strftime('%V')%> 
+        <span class="divider">|</span>
+        <a href="">Next week >></a>
+      </caption>
+      
+      <thead>
+        <tr>
+          <th>Tasks</th>
+          <% (today.beginning_of_week..today.end_of_week).each do |date| %>
+            <th class="today-<%= date.today? %>">
+              <%= date.strftime('%A') %><br><%= date.strftime('%m/%d') %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      
+      <tfoot>
+        <tr>
+          <td colspan="5"><a href="#new-task-modal" data-toggle="modal">Add new task</a></td>
+          <td colspan="3">
+            <% unless user_signed_in? %>
+              <a href="">Register to save your data!</a>
+            <%end%>
+          </td>
+        </tr>
+      </tfoot>
+    
+      <tbody>
+
+        <tr>
+          <td class="task-name">Take Vitamins</td>
+          <% (today.beginning_of_week..today.end_of_week).each do |date| %>
+            <% cell_class = "success" %>
+            <% if date > today %>
+              <% cell_class = "pending" %>
+            <% end %>
+            <td class="<%= cell_class %> cell_tog"><span class="cell_descriptor">Set Incomplete</span></td>
+          <% end %>
+        </tr>
+
+        <tr>
+          <td class="task-name">Run 2 Miles</td>
+          <% (today.beginning_of_week..today.end_of_week).each do |date| %>
+            <% cell_class = "success" %>
+            <% if date > today %>
+              <% cell_class = "pending" %>
+            <% end %>
+            <td class="<%= cell_class %> cell_tog"><span class="cell_descriptor">Set Complete</span></td>
+          <% end %>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= render 'add_new_task' %>
+<% end %>

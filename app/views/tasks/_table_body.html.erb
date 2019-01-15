@@ -1,0 +1,13 @@
+<tbody id="tbody">
+
+  <% if current_user.tasks.blank? %>
+    <tr class="empty-row">
+      <td>You have no tasks</td>
+    </tr>
+  <% end %>
+
+  <% current_user.tasks.each do |task| %>
+    <%= render 'table_row', task: task %>
+  <% end %>
+
+</tbody>

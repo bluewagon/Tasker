@@ -1,0 +1,58 @@
+<% today = Date.today %>
+<table class="table task-table">
+  <caption>
+    <%= link_to "<< Last Week", root_path(date: @date.last_week.strftime('%y-%m-%d')) %>
+    <span class="divider">|</span>
+    Week #<%= @date.strftime('%V')%> 
+    <span class="divider">|</span>
+    <%= link_to "Next Week >>", root_path(date: @date.next_week.strftime('%y-%m-%d')) %>
+  </caption>
+
+  <thead>
+    <tr>
+      <th>Tasks</th>
+      <% (@date.beginning_of_week..@date.end_of_week).each do |date| %>
+        <th class="today-<%= date == today %>">
+          <%= date.strftime('%A') %><br><%= date.strftime('%m/%d') %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        Register or login to create tasks and start keeping track of your goals
+      </td>
+      <td colspan="3">
+      </td>
+    </tr>
+  </tfoot>
+
+  <tbody>
+
+    <tr>
+      <td class="task-name">Take Vitamins</td>
+      <% (@date.beginning_of_week..@date.end_of_week).each do |date| %>
+        <% cell_class = "success" %>
+        <% if date > today %>
+          <% cell_class = "pending" %>
+        <% end %>
+        <td class="<%= cell_class %> anon_toggle"><span class="cell_descriptor">Set Incomplete</span></td>
+      <% end %>
+    </tr>
+
+    <tr>
+      <td class="task-name">Run 2 Miles</td>
+      <% (@date.beginning_of_week..@date.end_of_week).each do |date| %>
+        <% cell_class = "error" %>
+        <% if date > today %>
+          <% cell_class = "pending" %>
+        <% end %>
+        <td class="<%= cell_class %> anon_toggle"><span class="cell_descriptor">Set Complete</span></td>
+      <% end %>
+    </tr>
+
+  </tbody>
+
+</table>

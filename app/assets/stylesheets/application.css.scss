@@ -1,0 +1,301 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.ui.all
+ *= require_tree .
+ */
+
+@import "bootstrap";
+
+$primary: #065F73; /* This should cover 60% */
+$dark-primary: #021B21;
+$secondary: #032C36; /* This should cover 30% */
+$complementary: #FF2A1D; /* this should cover 10% */
+
+$old-header: #527578;
+
+$text: #E8DFD6;
+
+$containerbg: #E8DFD6;
+
+
+$successbg: #00B246;
+$successbg-hover: #00FF65;
+$errorbg: #B20A00;
+$errorbg-hover: #FF0F00;
+$pending: #8F8F8F;
+$pending-hover: #C7C7C7;
+
+@mixin round($degree)
+{
+  -webkit-border-radius: $degree;
+  -moz-border-radius: $degree;
+  border-radius: $degree;
+}
+
+@mixin round_one($section, $degree)
+{
+  -webkit-border-#{$section}-radius: $degree;
+  -moz-border-#{$section}-radius: $degree;
+  border-#{$section}-radius: $degree;  
+}
+
+@mixin shadow($horizlength, $vertlength, $blurradius, $spread)
+{
+  -webkit-box-shadow: $horizlength $vertlength $blurradius $spread rgba(50, 50, 50, 1);
+  -moz-box-shadow:    $horizlength $vertlength $blurradius $spread rgba(50, 50, 50, 1);
+  box-shadow: $horizlength $vertlength $blurradius $spread rgba(50, 50, 50, 1);
+}
+
+@mixin cell_hover($color)
+{
+  background-color: $color;
+  width: 14%;
+  cursor: pointer;
+}
+
+body
+{
+  background-color: $primary;
+  color: $text;
+}
+
+body footer {
+  margin-top: 10px;
+  margin-bottom: 0;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  text-align: center;
+
+  border-top: 1px solid #ddd;
+  background-color: $secondary;
+}
+
+a {
+  color: $white;
+}
+
+a:hover {
+  color: $text;
+}
+
+.container
+{
+  @include shadow(-1px, 0px, 15px, 0);
+  background-color: $containerbg;
+}
+
+.main-header
+{
+  @include round(10px);
+  @include shadow(-1px, 0px, 15px, 0);
+
+  width: 90%;
+  background-color: $secondary;
+  text-align: center;
+  color: $text;
+
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 5%;
+  margin-bottom: 20px;
+}
+
+.main-header h1 a {
+  color: $text;
+}
+
+.main-header h1 a:hover {
+  color: $text;
+  text-decoration: none;
+}
+
+.main-header footer {
+  border: none;
+  margin: 0 10px 0 0;
+  padding: 0;
+  text-align: right;
+}
+
+.task-table {
+  width: 96%;
+  margin-left: 2%;
+
+  border-radius: 10px;
+
+  @include shadow(-1px, 0px, 15px, 0);
+}
+
+.task-table caption
+{
+  margin-bottom: 10px;
+  color: $dark-primary;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.task-table caption a {
+  color: $dark-primary;
+}
+
+.task-table th {
+  text-align: center;
+  background-color: $primary;
+  color: $text;
+}
+
+th.today-true {
+  background-color: $secondary;
+  color: $white;
+}
+
+.task-table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.task-table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.task-table tfoot td{
+  background-color: $primary;
+}
+
+.task-table tfoot td:first-child
+{
+  border-bottom-left-radius: 10px;
+}
+
+.task-table tfoot td:last-child
+{
+  text-align: right;
+  border-bottom-right-radius: 10px;
+}
+
+.task-table tbody td {
+  border-right: 1px solid #ddd;
+  width: 12%;
+}
+
+.task-table tbody td:first-child {
+  width: 16%;
+}
+
+.task-table tbody td:last-child {
+  border-right: none;
+}
+
+.task-table tbody td:first-child {
+  border-right: none;
+}
+
+.task-name {
+  background-color: $dark-primary;
+}
+
+.cell_descriptor {
+  color: $dark-primary;
+  display: none;
+  text-align: center;
+}
+
+.success 
+{
+  background-color: $successbg;
+}
+
+.success:hover {
+  @include cell_hover($successbg-hover);
+}
+
+.success:hover .cell_descriptor{
+  display: inline;
+}
+
+.error
+{
+  background-color: $errorbg;
+}
+
+.error:hover
+{
+  @include cell_hover($errorbg-hover);
+}
+
+.error:hover .cell_descriptor{
+  display: inline;
+}
+
+.pending {
+  background-color: $pending;
+}
+
+.pending:hover {
+  background-color: $pending-hover;
+}
+
+.divider {
+  margin: 0 10px;
+  color: $primary;
+}
+
+.modal-header {
+  background-color: $primary;
+  text-align: center;
+}
+
+.modal-body {
+  color: $dark-primary;
+}
+
+.contain {
+  background-color: $primary;
+  @include round_one("top-left", 10px);
+  @include round_one("top-right", 10px);
+  padding-bottom: 10px;
+}
+
+.contain header {
+  text-align: center;
+  background-color: $secondary;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  @include round_one("top-left", 10px);
+  @include round_one("top-right", 10px);
+}
+
+.reg-forgot-links ul {
+  display: inline;
+}
+
+.input-error {
+  outline: none;
+  border-color: $errorbg !important;
+  box-shadow: 0 0 10px $errorbg !important;
+}
+
+.input-success 
+{
+  border-color: $successbg !important;
+}
+
+#error_explanation h2 {
+  font-size: 24px;
+}
+
+.empty-row {
+  color: $dark-primary;
+}

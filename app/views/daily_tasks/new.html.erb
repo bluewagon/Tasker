@@ -1,0 +1,23 @@
+<% date = params[:date] %>
+<div class="row">
+  <div class="span8 offset2 contain">
+    <header>
+      <h2>Complete Task</h2>
+    </header>
+    
+    <%= form_for @daily_task, url: task_daily_tasks_path, :html => { :class => "form-horizontal" } do |f| %>
+      <div class="control-group">
+        <%= f.label :task_date, "Date completed", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :task_date, :required => true, :value => date, :datepicker => true %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit "Complete", :class => "btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

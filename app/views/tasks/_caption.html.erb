@@ -1,0 +1,7 @@
+<caption>
+  <%= link_to "<< Last Week", root_path(date: @date.last_week.strftime('%y-%m-%d')) %>
+  <span class="divider">|</span>
+  Week #<%= @date.strftime('%V')%> 
+  <span class="divider">|</span>
+  <%= link_to "Next Week >>", root_path(date: @date.next_week.strftime('%y-%m-%d')) %>
+</caption>
